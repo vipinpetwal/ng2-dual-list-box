@@ -24,7 +24,8 @@ export class DualListBoxComponent implements OnInit, ControlValueAccessor {
     @Input() set data(items: Array<{}>) {
         this.availableItems = [...(items || []).map((item: {}, index: number) => ({
             value: item[this.valueField].toString(),
-            text: item[this.textField]
+            text: item[this.textField],
+            mandatory:item[this.mandatoryField]
         }))];
     };
     // input to set search term for available list box from the outside
@@ -42,19 +43,22 @@ export class DualListBoxComponent implements OnInit, ControlValueAccessor {
     // field to use for displaying option text
     @Input() textField = 'name';
     // text to display as title above component
+    @Input() mandatoryField = 'mandatory';
+    // text to display as title above component
+
     @Input() title: string;
     // time to debounce search output in ms
     @Input() debounceTime = 500;
     // show/hide button to move all items between boxes
     @Input() moveAllButton = true;
     // text displayed over the available items list box
-    @Input() availableText = 'Available items';
+    @Input() availableText = 'Available Items';
     // text displayed over the selected items list box
-    @Input() selectedText = 'Selected items';
+    @Input() selectedText = 'Selected Items';
     // set placeholder text in available items list box
-    @Input() availableFilterPlaceholder= 'Filter...';
+    @Input() availableFilterPlaceholder= 'Filter..';
     // set placeholder text in selected items list box
-    @Input() selectedFilterPlaceholder = 'Filter...';
+    @Input() selectedFilterPlaceholder = 'Filter..';
 
     // event called when item or items from available items(left box) is selected
     @Output() onAvailableItemSelected: EventEmitter<{} | Array<{}>> = new EventEmitter<{} | Array<{}>>();

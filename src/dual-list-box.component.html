@@ -28,7 +28,7 @@
                 (click)="moveMarkedSelectedItemsToAvailable()">
             <span class="glyphicon glyphicon-chevron-left"></span>
         </button>
-        <button type="button"
+        <button type="button" style="display:none"
                 class="btn btn-default col-md-8 col-md-offset-2 atl bottom10 sm-spacing"
                 *ngIf="moveAllButton" (click)="moveAllItemsToAvailable()">
             <span class="glyphicon glyphicon-chevron-left"></span>
@@ -40,7 +40,7 @@
         <input type="text" class="form-control vertical-spacing-5" placeholder="{{selectedFilterPlaceholder}}"
                formControlName="selectedSearchInput" />
         <select class="form-control list-box" formControlName="selectedListBox" multiple>
-            <option *ngFor="let item of selectedItems | arrayFilter:['text', searchTermSelected] | arraySort:['text', 'ASC'];trackBy:trackByValue"
+            <option [style.color] = "item.mandatory==1 ? 'red' : 'black'"  *ngFor="let item of selectedItems | arrayFilter:['text', searchTermSelected] | arraySort:['text', 'ASC'];trackBy:trackByValue"
                     [value]="item?.value"
                     (dblclick)="moveSelectedItemToAvailable(item)">{{item?.text}}</option>
         </select>

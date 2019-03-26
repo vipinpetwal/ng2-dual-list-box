@@ -4,6 +4,7 @@
 export interface IListBoxItem {
     value: string;
     text: string;
+    mandatory:string;
 }
 /**
  * Helper interface to emit event when
